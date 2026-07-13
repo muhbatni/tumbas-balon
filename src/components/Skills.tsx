@@ -69,6 +69,7 @@ const categories: SkillCategory[] = [
       { name: "Agile/Scrum", logo: "" },
       { name: "CI/CD", logo: "" },
       { name: "MySQL", logo: `${DEVICON}/mysql/mysql-original.svg` },
+      { name: "PostgreSQL", logo: `${DEVICON}/postgresql/postgresql-original.svg` },
     ],
   },
 ];
