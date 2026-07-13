@@ -26,11 +26,12 @@ const experiences: ExperienceItem[] = [
   },
   {
     title: "Information Systems Student",
-    organization: "University",
-    period: "2021 — Present",
+    organization: "Sunan Ampel State Islamic University",
+    period: "2023 — Present",
     description:
       "Studying Information Systems with focus on software engineering, database management, and quality assurance practices.",
     highlights: [
+      "Experienced as an operations auditor for a student association",
       "Focused on Quality Assurance and Software Engineering",
       "Developed projects using Laravel and Next.js",
       "Practiced testing automation with Cypress and Selenium",
