@@ -565,6 +565,104 @@ body {
   animation: float 2s ease-in-out infinite;
 }
 
+/* ===== MARQUEE ===== */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-track-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-reverse {
+  animation-name: marquee-scroll-reverse;
+}
+
+/* Pause on hover */
+.marquee-track-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Fade edges */
+.marquee-fade-left,
+.marquee-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.marquee-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+/* Marquee items */
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.marquee-item:hover {
+  transform: scale(1.07);
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 20px var(--accent-glow);
+}
+
+/* Accessible: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .marquee-track-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .marquee-fade-left,
+  .marquee-fade-right {
+    display: none;
+  }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .section {
@@ -574,8 +672,23 @@ body {
   .hero-title {
     font-size: 2.2rem;
   }
-  
+
   .hero-description {
     font-size: 1rem;
   }
+
+  .marquee-track {
+    gap: 0.5rem;
+  }
+
+  .marquee-item {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .marquee-fade-left,
+  .marquee-fade-right {
+    width: 40px;
+  }
 }
+
