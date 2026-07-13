@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 interface Skill {
   name: string;
-  icon: React.ReactNode;
+  logo: string; // URL to real brand logo
 }
 
 interface SkillCategory {
@@ -14,113 +14,13 @@ interface SkillCategory {
   skills: Skill[];
 }
 
-/* ── Brand SVG Icons ── */
-
-const CypressIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 48 48" fill="currentColor">
-    <path d="M24 0C10.745 0 0 10.745 0 24s10.745 24 24 24 24-10.745 24-24S37.255 0 24 0zm0 4.5c10.77 0 19.5 8.73 19.5 19.5S34.77 43.5 24 43.5 4.5 34.77 4.5 24 13.23 4.5 24 4.5zm7.39 11.322l-5.95 8.568L30.2 33.5h-4.36l-3.26-5.94L19.5 33.5h-4.16l5.64-8.21-5.44-8.468h4.36l3.08 5.54 2.94-5.54h4.47z"/>
-  </svg>
-);
-
-const SeleniumIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm-.218 3.252l7.644 4.404-2.282 1.318-5.362-3.093-5.362 3.093-2.282-1.318 7.644-4.404zm-5.58 6.037l2.282 1.317v6.186l-2.282-1.317V9.289zm11.16 0v6.186l-2.282 1.317v-6.186l2.282-1.317zm-5.58 3.222l2.282 1.317v6.186L12 21.332l-1.864-1.318v-6.186l2.066-1.317z"/>
-  </svg>
-);
-
-const PostmanIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M13.527.099C6.955-.744.942 3.9.099 10.473c-.843 6.572 3.8 12.584 10.373 13.428 6.573.843 12.587-3.801 13.428-10.374C24.744 6.955 20.101.943 13.527.099zm2.471 7.485a.855.855 0 0 1 0 1.21l-3.59 3.588a.856.856 0 1 1-1.21-1.21l3.59-3.588a.855.855 0 0 1 1.21 0zM9.164 12.4a.856.856 0 0 1 1.21 0l.459.459-1.668 1.668-.459-.459a.855.855 0 0 1 0-1.21l.458-.458zm-2.07 4.116l1.395-1.395.459.459a.854.854 0 0 0 1.21 0l1.668-1.668.459.459-3.352 3.352c-.357-.359-.982-1.007-1.84-1.207zm9.063-7.34l-3.59 3.59a1.711 1.711 0 0 0-2.42 0l-.459.458a1.71 1.71 0 0 0 0 2.42l.459.459a1.71 1.71 0 0 0 1.668.441l-2.248 2.248a9.142 9.142 0 0 1-3.29-2.8l6.46-6.46c.67.244 1.42.188 2.042-.234l1.378 1.378v-.5z"/>
-  </svg>
-);
-
-const LaravelIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934c0 .135-.073.26-.189.326l-9.037 5.206a.367.367 0 01-.094.04l-.034.009a.367.367 0 01-.192 0l-.034-.009a.365.365 0 01-.094-.04L.433 18.755a.376.376 0 01-.189-.326V4.112c0-.034.005-.068.014-.1l.007-.028a.358.358 0 01.027-.067l.016-.027a.366.366 0 01.04-.054l.022-.022a.365.365 0 01.054-.043l.028-.018 4.513-2.6a.376.376 0 01.378 0l4.513 2.6.028.018a.365.365 0 01.054.043l.022.022a.366.366 0 01.04.054l.016.027a.358.358 0 01.027.067l.007.028c.01.032.014.066.014.1v9.652l3.756-2.164V8.345c0-.034.005-.068.014-.1l.007-.028a.358.358 0 01.027-.067l.016-.027a.366.366 0 01.04-.054l.022-.022a.365.365 0 01.054-.043l.028-.018 4.513-2.6a.376.376 0 01.378 0l4.513 2.6.028.018a.365.365 0 01.054.043l.022.022a.366.366 0 01.04.054l.016.027a.358.358 0 01.027.067zM22.78 10.39V5.97l-1.578.909-2.178 1.254v4.42l3.756-2.164zM18.648 18.1v-4.424l-2.143 1.228-6.126 3.507v4.468l8.27-4.78zM1.19 5.296v12.939l8.27 4.78v-4.47L5.15 16.206l-.028-.017a.365.365 0 01-.054-.043l-.022-.021a.366.366 0 01-.04-.055l-.015-.027a.37.37 0 01-.028-.066l-.007-.03A.354.354 0 014.943 15.85V7.46L2.765 6.205 1.19 5.296zm4.136-2.5L1.567 4.88l3.756 2.166 3.756-2.166L5.323 2.796zm1.756 12.283V6.113l-2.178-1.254-1.578-.909v8.967l3.756 2.162zM14.46 3.453l-3.756 2.085 3.756 2.166 3.756-2.166-3.756-2.085zm-.189 4.824L10.515 6.02v8.186l3.756-2.164V8.277zm8.837.893l-3.756 2.085 1.578.909 2.178 1.254V9.17z"/>
-  </svg>
-);
-
-const NextjsIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 01-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 00-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 00-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 01-.206.214c-.075.037-.14.044-.495.044H9.305l-.108-.068a.438.438 0 01-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 01.174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 004.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 002.466-2.163 11.944 11.944 0 002.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.86-8.292-8.208-9.695a12.597 12.597 0 00-2.499-.523A33.119 33.119 0 0011.572 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 01.237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 01.233-.296c.096-.05.13-.054.5-.054z"/>
-  </svg>
-);
-
-const PHPIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312zm-3.26 7.451c-.261.25-.575.438-.917.551-.336.108-.765.164-1.285.164H5.357l-.327 1.681H3.652l1.23-6.326h2.65c.797 0 1.378.209 1.744.628.366.418.476 1.002.33 1.752a2.836 2.836 0 01-.305.847c-.143.255-.33.49-.561.703zm4.024.715l.543-2.799c.063-.318.039-.536-.068-.651-.107-.116-.336-.174-.687-.174H11.46l-.704 3.625H9.388l1.23-6.327h1.367l-.327 1.682h1.218c.767 0 1.295.134 1.586.401s.378.7.263 1.299l-.572 2.944h-1.389zm7.597-3.855a2.836 2.836 0 01-.305.847c-.143.255-.33.49-.561.703a2.453 2.453 0 01-.917.551c-.336.108-.765.164-1.286.164h-1.18l-.327 1.682h-1.378l1.23-6.326h2.649c.797 0 1.378.209 1.744.628.366.418.477 1.001.331 1.751zm-2.595-1.382h-.943l-.516 2.648h.838c.557 0 .971-.105 1.242-.314.272-.21.455-.559.551-1.049.092-.47.049-.802-.125-.995s-.524-.29-1.047-.29z"/>
-  </svg>
-);
-
-const JavaScriptIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.405-.6-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/>
-  </svg>
-);
-
-const TypeScriptIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 011.306.34v2.458a3.95 3.95 0 00-.643-.361 5.093 5.093 0 00-.717-.26 5.453 5.453 0 00-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 00-.623.242c-.17.104-.3.229-.393.374a.888.888 0 00-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.42.276.69.399.572.245.904.366a10.68 10.68 0 011.398.635c.42.226.776.49 1.07.79.293.3.52.65.677 1.049.156.399.234.862.234 1.39 0 .797-.17 1.47-.512 2.022a3.26 3.26 0 01-1.382 1.252c-.582.29-1.27.435-2.065.435-.755 0-1.454-.08-2.097-.243a6.77 6.77 0 01-1.773-.698v-2.62a4.28 4.28 0 001.005.68c.373.18.745.321 1.118.422.372.102.725.153 1.059.153.293 0 .543-.031.748-.093a1.28 1.28 0 00.502-.265.779.779 0 00.272-.397.61.61 0 00-.02-.37.98.98 0 00-.283-.398 3.34 3.34 0 00-.577-.398 14.96 14.96 0 00-.913-.432 9.498 9.498 0 01-1.324-.637 4.39 4.39 0 01-.992-.773 3.04 3.04 0 01-.619-1.005c-.14-.39-.21-.849-.21-1.379 0-.726.152-1.362.457-1.906a3.21 3.21 0 011.307-1.293c.57-.316 1.262-.473 2.076-.473zm-8.39.37h5.458v1.84h-1.765V20.1H12.34v-8.14H10.098V10.12z"/>
-  </svg>
-);
-
-const GitIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.66 2.66c.642-.22 1.385-.076 1.9.44a1.89 1.89 0 010 2.67 1.89 1.89 0 01-2.67 0 1.893 1.893 0 01-.46-1.95l-2.48-2.48-.001 6.53a1.89 1.89 0 01.5.35 1.89 1.89 0 010 2.67 1.89 1.89 0 01-2.67 0 1.89 1.89 0 010-2.67c.18-.18.39-.3.61-.39V8.94a1.89 1.89 0 01-.61-.39 1.893 1.893 0 01-.46-1.95L7.6 4.26.452 11.408c-.603.605-.603 1.582 0 2.188l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.188"/>
-  </svg>
-);
-
-const RestApiIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-  </svg>
-);
-
-const AgileIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="23 4 23 10 17 10" />
-    <polyline points="1 20 1 14 7 14" />
-    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
-  </svg>
-);
-
-const CICDIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
-    <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
-    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-  </svg>
-);
-
-const MySQLIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.398-5.627h1.169l1.332 4.064h.008l1.332-4.064h1.132c.226 2.104.368 3.96.398 5.627zM7.642 18.695h-.84v-4.107h.84v1.66c.203 0 .362-.013.473-.04.11-.027.217-.09.32-.188.104-.1.192-.244.264-.434.073-.19.135-.428.186-.716h.856c-.1.647-.254 1.136-.464 1.467-.21.33-.495.544-.856.64.466.126.774.41.925.852.15.44.234 1.03.252 1.766a4.06 4.06 0 00.06.712h-.865a6.97 6.97 0 01-.058-.706c-.02-.594-.092-1.004-.215-1.228-.124-.224-.36-.336-.71-.336h-.168v2.27zm6.074 0h-3.406v-4.107h.84v3.47h2.566v.637zm.736-4.107h.84v4.107h-.84v-4.107z"/>
-  </svg>
-);
-
-const ManualTestIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 11l3 3L22 4" />
-    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-  </svg>
-);
-
-const TestPlanIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-    <polyline points="14 2 14 8 20 8" />
-    <line x1="16" y1="13" x2="8" y2="13" />
-    <line x1="16" y1="17" x2="8" y2="17" />
-    <polyline points="10 9 9 9 8 9" />
-  </svg>
-);
+const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
 const categories: SkillCategory[] = [
   {
     title: "Quality Assurance",
-    description: "Ensuring software reliability through automated and manual testing strategies.",
+    description:
+      "Ensuring software reliability through automated and manual testing strategies.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -128,16 +28,17 @@ const categories: SkillCategory[] = [
       </svg>
     ),
     skills: [
-      { name: "Cypress", icon: <CypressIcon /> },
-      { name: "Selenium", icon: <SeleniumIcon /> },
-      { name: "Postman", icon: <PostmanIcon /> },
-      { name: "Manual Testing", icon: <ManualTestIcon /> },
-      { name: "Test Planning", icon: <TestPlanIcon /> },
+      { name: "Cypress", logo: `${DEVICON}/cypressio/cypressio-original.svg` },
+      { name: "Selenium", logo: `${DEVICON}/selenium/selenium-original.svg` },
+      { name: "Postman", logo: `${DEVICON}/postman/postman-original.svg` },
+      { name: "Manual Testing", logo: "" },
+      { name: "Test Planning", logo: "" },
     ],
   },
   {
     title: "Development",
-    description: "Building full-stack applications with modern frameworks and tools.",
+    description:
+      "Building full-stack applications with modern frameworks and tools.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6" />
@@ -145,16 +46,17 @@ const categories: SkillCategory[] = [
       </svg>
     ),
     skills: [
-      { name: "Laravel", icon: <LaravelIcon /> },
-      { name: "Next.js", icon: <NextjsIcon /> },
-      { name: "PHP", icon: <PHPIcon /> },
-      { name: "JavaScript", icon: <JavaScriptIcon /> },
-      { name: "TypeScript", icon: <TypeScriptIcon /> },
+      { name: "Laravel", logo: `${DEVICON}/laravel/laravel-original.svg` },
+      { name: "Next.js", logo: `${DEVICON}/nextjs/nextjs-original.svg` },
+      { name: "PHP", logo: `${DEVICON}/php/php-original.svg` },
+      { name: "JavaScript", logo: `${DEVICON}/javascript/javascript-original.svg` },
+      { name: "TypeScript", logo: `${DEVICON}/typescript/typescript-original.svg` },
     ],
   },
   {
     title: "Tools & Methodology",
-    description: "Using modern workflows and collaboration tools for efficient delivery.",
+    description:
+      "Using modern workflows and collaboration tools for efficient delivery.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3" />
@@ -162,14 +64,53 @@ const categories: SkillCategory[] = [
       </svg>
     ),
     skills: [
-      { name: "Git", icon: <GitIcon /> },
-      { name: "REST API", icon: <RestApiIcon /> },
-      { name: "Agile/Scrum", icon: <AgileIcon /> },
-      { name: "CI/CD", icon: <CICDIcon /> },
-      { name: "MySQL", icon: <MySQLIcon /> },
+      { name: "Git", logo: `${DEVICON}/git/git-original.svg` },
+      { name: "REST API", logo: "" },
+      { name: "Agile/Scrum", logo: "" },
+      { name: "CI/CD", logo: "" },
+      { name: "MySQL", logo: `${DEVICON}/mysql/mysql-original.svg` },
     ],
   },
 ];
+
+/* Fallback SVG icons for skills that don't have brand logos */
+const fallbackIcons: Record<string, React.ReactNode> = {
+  "Manual Testing": (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 11l3 3L22 4" />
+      <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+    </svg>
+  ),
+  "Test Planning": (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  ),
+  "REST API": (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
+  ),
+  "Agile/Scrum": (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 4 23 10 17 10" />
+      <polyline points="1 20 1 14 7 14" />
+      <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+    </svg>
+  ),
+  "CI/CD": (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
+      <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+    </svg>
+  ),
+};
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -227,7 +168,20 @@ export default function Skills() {
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (
                   <span key={skill.name} className="skill-tag">
-                    <span>{skill.icon}</span>
+                    <span className="flex items-center justify-center w-4 h-4">
+                      {skill.logo ? (
+                        <img
+                          src={skill.logo}
+                          alt={skill.name}
+                          width={16}
+                          height={16}
+                          className="object-contain"
+                          loading="lazy"
+                        />
+                      ) : (
+                        fallbackIcons[skill.name]
+                      )}
+                    </span>
                     {skill.name}
                   </span>
                 ))}
