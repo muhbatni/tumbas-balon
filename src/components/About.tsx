@@ -27,9 +27,9 @@ export default function About() {
   }, []);
 
   const stats = [
-    { value: "3+", label: "Dashboard Apps Built" },
-    { value: "2+", label: "Years of Study" },
-    { value: "5+", label: "Tools Mastered" },
+    { value: "3+", label: "Dashboard Apps" },
+    { value: "3+", label: "Years of Study" },
+    { value: "5+", label: "Tools" },
   ];
 
   return (
