@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -41,25 +42,29 @@ export default function Navbar() {
             Batni<span className="text-[var(--accent-primary)]"></span>
           </a>
 
-          {/* Desktop links */}
+          {/* Desktop links + ThemeToggle */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="nav-link">
                 {link.label}
               </a>
             ))}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className={`hamburger md:hidden ${mobileOpen ? "active" : ""}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+          {/* Mobile controls */}
+          <div className="flex items-center gap-4 md:hidden">
+            <ThemeToggle />
+            <button
+              className={`hamburger ${mobileOpen ? "active" : ""}`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
       </nav>
 
