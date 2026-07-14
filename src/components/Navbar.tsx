@@ -42,7 +42,7 @@ export default function Navbar() {
             Batni<span className="text-[var(--accent-primary)]"></span>
           </a>
 
-          {/* Desktop links + ThemeToggle */}
+          {/* Menu navigasi untuk layar desktop & tombol ganti tema */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="nav-link">
@@ -52,7 +52,7 @@ export default function Navbar() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile controls */}
+          {/* Tombol ganti tema & menu hamburger untuk layar mobile/HP */}
           <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
             <button
@@ -68,7 +68,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Menu navigasi pop-up khusus layar mobile */}
       <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
         {navLinks.map((link) => (
           <a

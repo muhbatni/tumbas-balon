@@ -44,7 +44,7 @@ export default function ThemeProvider({
   const [theme, setThemeState] = useState<Theme>("system");
   const [mounted, setMounted] = useState(false);
 
-  // Read saved preference on mount
+  // Ambil tema yang disimpan pas pertama kali halaman dimuat
   useEffect(() => {
     const saved = localStorage.getItem("theme") as Theme | null;
     const initial = saved && ["dark", "light", "system"].includes(saved)
@@ -55,7 +55,7 @@ export default function ThemeProvider({
     setMounted(true);
   }, []);
 
-  // Listen for OS theme changes when in "system" mode
+  // Pantau perubahan tema bawaan OS kalau pakai mode "system"
   useEffect(() => {
     if (!mounted) return;
 

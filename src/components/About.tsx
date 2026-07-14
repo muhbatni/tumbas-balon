@@ -49,7 +49,7 @@ export default function About() {
         </div>
 
         <div className="grid md:grid-cols-5 gap-10">
-          {/* Text */}
+          {/* Deskripsi singkat profil */}
           <div className="md:col-span-3 about-animate opacity-0 stagger-2">
             <div className="space-y-5 text-[var(--text-secondary)] leading-relaxed">
               <p>
@@ -82,7 +82,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Bagian angka statistik/pencapaian */}
           <div className="md:col-span-2 about-animate opacity-0 stagger-3">
             <div className="space-y-4">
               {stats.map((stat, index) => (

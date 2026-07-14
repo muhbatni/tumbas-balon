@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ===== DESIGN TOKENS — DARK (default) ===== */
+/* Warna & token untuk tema gelap (default) */
 :root {
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
@@ -22,7 +22,7 @@
   --mobile-menu-bg: rgba(10, 10, 15, 0.98);
 }
 
-/* ===== DESIGN TOKENS — LIGHT ===== */
+/* Token untuk tema terang */
 [data-theme="light"] {
   --bg-primary: #f8f9fc;
   --bg-secondary: #eef0f5;
@@ -44,7 +44,7 @@
   --mobile-menu-bg: rgba(248, 249, 252, 0.98);
 }
 
-/* ===== GLOBAL ===== */
+/* Pengaturan global & reset browser */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -62,7 +62,7 @@ body {
   color: #fff;
 }
 
-/* ===== ANIMATIONS ===== */
+/* Efek animasi transisi & fade-in */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -134,7 +134,7 @@ body {
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
 
-/* ===== NAVBAR ===== */
+/* Gaya untuk bilah navigasi (Navbar) */
 .navbar {
   position: fixed;
   top: 0;
@@ -182,7 +182,7 @@ body {
   width: 100%;
 }
 
-/* ===== HERO ===== */
+/* Tampilan utama / hero section */
 .hero-section {
   position: relative;
   min-height: 100vh;
@@ -263,7 +263,7 @@ body {
   max-width: 560px;
 }
 
-/* ===== BUTTONS ===== */
+/* Kumpulan gaya tombol */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -317,7 +317,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===== SECTIONS ===== */
+/* Tata letak (layout) section umum */
 .section {
   padding: 6rem 0;
   position: relative;
@@ -360,7 +360,7 @@ body {
   border-radius: 2px;
 }
 
-/* ===== CARDS ===== */
+/* Efek kaca (glassmorphism) untuk card komponen */
 .glass-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -396,7 +396,7 @@ body {
   opacity: 1;
 }
 
-/* ===== SKILL BADGES ===== */
+/* Tag untuk badge skill/keahlian */
 .skill-tag {
   display: inline-flex;
   align-items: center;
@@ -417,7 +417,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* ===== TIMELINE ===== */
+/* Garis waktu riwayat kerja/belajar */
 .timeline-item {
   position: relative;
   padding-left: 2rem;
@@ -449,7 +449,7 @@ body {
   display: none;
 }
 
-/* ===== CONTACT ===== */
+/* Bagian kontak dan tautan sosial */
 .contact-link {
   display: inline-flex;
   align-items: center;
@@ -470,13 +470,13 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== FOOTER ===== */
+/* Area kaki halaman (Footer) */
 .footer {
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-primary);
 }
 
-/* ===== GRID BACKGROUND ===== */
+/* Pola latar belakang kotak-kotak (grid) */
 .grid-bg {
   position: absolute;
   inset: 0;
@@ -489,7 +489,7 @@ body {
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
 }
 
-/* ===== MOBILE MENU ===== */
+/* Menu navigasi pop-up layar HP */
 .mobile-menu {
   position: fixed;
   inset: 0;
@@ -522,7 +522,7 @@ body {
   color: var(--text-primary);
 }
 
-/* ===== HAMBURGER ===== */
+/* Tombol garis tiga (hamburger) untuk menu mobile */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -551,7 +551,7 @@ body {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ===== SCROLL INDICATOR ===== */
+/* Petunjuk scroll ke bawah */
 .scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -590,7 +590,7 @@ body {
   animation: float 2s ease-in-out infinite;
 }
 
-/* ===== MARQUEE ===== */
+/* Animasi running text (marquee) buat daftar skill */
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -619,12 +619,12 @@ body {
   animation-name: marquee-scroll-reverse;
 }
 
-/* Pause on hover */
+  /* Animasi berhenti pas di-hover pointer mouse */
 .marquee-track-wrapper:hover .marquee-track {
   animation-play-state: paused;
 }
 
-/* Fade edges */
+/* Bikin efek memudar di ujung kiri & kanan */
 .marquee-fade-left,
 .marquee-fade-right {
   position: absolute;
@@ -645,7 +645,7 @@ body {
   background: linear-gradient(to left, var(--bg-primary), transparent);
 }
 
-/* Marquee items */
+/* Item-item skill di dalam marquee */
 .marquee-item {
   display: inline-flex;
   align-items: center;
@@ -671,7 +671,7 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 20px var(--accent-glow);
 }
 
-/* Accessible: reduced motion */
+/* Penyesuaian agar tidak pusing bagi user yang mengaktifkan 'reduced motion' di OS */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none !important;
@@ -688,7 +688,7 @@ body {
   }
 }
 
-/* ===== THEME TOGGLE BUTTON ===== */
+/* Tombol ganti tema gelap/terang */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -726,7 +726,7 @@ body {
   transform: rotate(15deg);
 }
 
-/* ===== RESPONSIVE ===== */
+/* Penyesuaian tata letak untuk layar HP/tablet */
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;

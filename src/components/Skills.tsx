@@ -9,7 +9,7 @@ interface Skill {
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
-/* Fallback SVG icons for skills without brand logos */
+/* Icon SVG cadangan kalau seandainya ga dapet logo brand dari Devicon */
 const fallbackIcons: Record<string, React.ReactNode> = {
   "Manual Testing": (
     <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -95,7 +95,7 @@ const rows: MarqueeRow[] = [
   },
 ];
 
-/* ─── Sub-components ─── */
+// Beberapa helper component kecil pendukung marquee
 
 function SkillIcon({ skill, size }: { skill: Skill; size: number }) {
   if (skill.logo) {
@@ -153,7 +153,7 @@ function MarqueeTrack({
   );
 }
 
-/* ─── Main Component ─── */
+// Component utama halaman Skills
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
