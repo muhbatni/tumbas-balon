@@ -8,9 +8,27 @@ interface Project {
   description: string;
   tags: string[];
   icon: React.ReactNode;
+  link?: string;
 }
 
 const projects: Project[] = [
+  {
+    title: "Coffee Shop Landing Page",
+    subtitle: "KGN Coffee",
+    description:
+      "Designed and developed a highly responsive, modern landing page for KGN Coffee. Highlights a sleek interface, rich animations, and structured sections to engage coffee enthusiasts.",
+    tags: ["Next.js", "Tailwind CSS", "Lucide Icons", "Responsive Design"],
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+        <line x1="6" y1="2" x2="6" y2="4" />
+        <line x1="10" y1="2" x2="10" y2="4" />
+        <line x1="14" y1="2" x2="14" y2="4" />
+      </svg>
+    ),
+    link: "https://kgn.tumbas-balon.my.id/",
+  },
   {
     title: "Dashboard Monitoring System",
     subtitle: "BMKG Internship",
@@ -102,43 +120,65 @@ export default function Projects() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`glass-card group project-animate opacity-0 stagger-${index + 2}`}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-11 h-11 rounded-xl bg-[rgba(108,99,255,0.1)] flex items-center justify-center text-[var(--accent-primary)] shrink-0 transition-all duration-300 group-hover:bg-[rgba(108,99,255,0.2)] group-hover:scale-110">
-                  {project.icon}
+          {projects.map((project, index) => {
+            const CardContent = (
+              <>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-[rgba(108,99,255,0.1)] flex items-center justify-center text-[var(--accent-primary)] shrink-0 transition-all duration-300 group-hover:bg-[rgba(108,99,255,0.2)] group-hover:scale-110">
+                    {project.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg leading-tight text-[var(--text-primary)]">
+                      {project.title}
+                    </h3>
+                    {project.subtitle && (
+                      <p className="text-xs text-[var(--accent-secondary)] font-medium mt-1">
+                        {project.subtitle}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg leading-tight">
-                    {project.title}
-                  </h3>
-                  {project.subtitle && (
-                    <p className="text-xs text-[var(--accent-secondary)] font-medium mt-1">
-                      {project.subtitle}
-                    </p>
-                  )}
+
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs px-2.5 py-1 rounded-md bg-[rgba(255,255,255,0.04)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </div>
+              </>
+            );
 
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
-                {project.description}
-              </p>
+            if (project.link) {
+              return (
+                <a
+                  key={project.title}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`glass-card group project-animate opacity-0 stagger-${index + 2} block no-underline cursor-pointer`}
+                >
+                  {CardContent}
+                </a>
+              );
+            }
 
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2.5 py-1 rounded-md bg-[rgba(255,255,255,0.04)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
+            return (
+              <div
+                key={project.title}
+                className={`glass-card group project-animate opacity-0 stagger-${index + 2}`}
+              >
+                {CardContent}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
